@@ -21,6 +21,9 @@ def create_app():
   db.init_app(app)
   migrate.init_app(app, db)
 
+  from .routes import tasks_bp
+  app.register_blueprint(tasks_bp, url_prefix='/api')
+
   # set a default page that calls the home function 
   @app.route('/')
   def home():
